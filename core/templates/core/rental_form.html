@@ -1,9 +1,22 @@
 {% extends "core/base.html" %}
- {% block content %}
- <h1>Alquiler</h1>
-<form method="post">{% csrf_token %}
-  {{ form.as_p }}
- <button class="btn btn-success">Guardar</button>
- <a href="{% url 'rental-list' %}" class="btn btn-secondary">Cancelar</a>
- </form>
- {% endblock %}
+
+{% block content %}
+
+<!-- Título principal de la página de formulario de alquiler -->
+<h1>Alquiler</h1>
+
+<!-- Formulario para crear o editar un alquiler -->
+<form method="post">
+    {% csrf_token %}
+
+    <!-- Se muestra el formulario automáticamente con los campos organizados en párrafos -->
+    {{ form.as_p }}
+
+    <!-- Botón para guardar el alquiler -->
+    <button class="btn btn-success">Guardar</button>
+
+    <!-- Botón para cancelar y volver a la lista de alquileres -->
+    <a href="{% url 'rental-list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

@@ -2,11 +2,17 @@
 {% block title %}Vehículos{% endblock %}
 
 {% block content %}
+
+<!-- Título principal de la vista -->
 <h2>Vehículos</h2>
 
+<!-- Botón para agregar un nuevo vehículo -->
 <a href="{% url 'vehicle-add' %}" class="btn btn-primary mb-3">Agregar Vehículo</a>
 
+<!-- Tabla que muestra todos los vehículos registrados -->
 <table class="table table-bordered">
+
+    <!-- Encabezados de la tabla -->
     <tr>
         <th>ID</th>
         <th>Marca</th>
@@ -15,19 +21,25 @@
         <th>Acciones</th>
     </tr>
 
+    <!-- Recorrido de la lista de vehículos proporcionada por la vista -->
     {% for v in vehiculos %}
     <tr>
+        <!-- Información básica del vehículo -->
         <td>{{ v.id }}</td>
         <td>{{ v.marca }}</td>
         <td>{{ v.modelo }}</td>
+
+        <!-- Mostrar el estado con el texto legible definido en choices -->
         <td>{{ v.get_estado_display }}</td>
+
+        <!-- Acciones para editar o eliminar -->
         <td>
             <a class="btn btn-warning btn-sm" href="{% url 'vehicle-edit' v.pk %}">Editar</a>
             <a class="btn btn-danger btn-sm" href="{% url 'vehicle-delete' v.pk %}">Eliminar</a>
         </td>
     </tr>
     {% endfor %}
+
 </table>
 
 {% endblock %}
-

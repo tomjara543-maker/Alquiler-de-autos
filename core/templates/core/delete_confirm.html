@@ -3,14 +3,26 @@
 {% block title %}Confirmar eliminación{% endblock %}
 
 {% block content %}
+
+<!-- Contenedor visual para mostrar el mensaje de confirmación -->
 <div class="card shadow-sm p-4">
+
+    <!-- Título que indica que se está confirmando una eliminación -->
     <h3 class="mb-3">¿Eliminar este registro?</h3>
+
+    <!-- Mensaje de advertencia indicando que la acción es irreversible -->
     <p>Esta acción no se puede deshacer.</p>
 
+    <!-- Formulario para confirmar o cancelar la eliminación -->
     <form method="post">
         {% csrf_token %}
+
+        <!-- Botón para volver atrás sin eliminar -->
         <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+
+        <!-- Botón que ejecuta la eliminación del registro -->
         <button type="submit" class="btn btn-danger">Eliminar</button>
     </form>
 </div>
+
 {% endblock %}

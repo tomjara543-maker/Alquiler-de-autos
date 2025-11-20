@@ -1,9 +1,22 @@
 {% extends "core/base.html" %}
- {% block content %}
- <h1>Vehículo</h1>
- <form method="post">{% csrf_token %}
-  {{ form.as_p }}
- <button class="btn btn-success">Guardar</button>
- <a href="{% url 'vehicle-list' %}" class="btn btn-secondary">Cancelar</a>
- </form>
- {% endblock %}
+
+{% block content %}
+
+<!-- Título principal del formulario de vehículo -->
+<h1>Vehículo</h1>
+
+<!-- Formulario para agregar o editar un vehículo -->
+<form method="post">
+    {% csrf_token %}
+
+    <!-- Renderizado automático de los campos del formulario -->
+    {{ form.as_p }}
+
+    <!-- Botón para guardar los cambios -->
+    <button class="btn btn-success">Guardar</button>
+
+    <!-- Botón para volver a la lista de vehículos -->
+    <a href="{% url 'vehicle-list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

@@ -6,10 +6,12 @@
     <meta charset="UTF-8">
     <title>Registrarse</title>
 
+    <!-- Se importa Bootstrap para dar estilo al formulario -->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
     <style>
+        /* Imagen de fondo y estilo general centrado */
         body {
             background-image: url("{% static 'img\img.jpeg' %}");
             height: 100vh;
@@ -18,6 +20,8 @@
             align-items: center;
             font-family: 'Poppins', sans-serif;
         }
+
+        /* Tarjeta donde se encuentra el formulario de registro */
         .register-card {
             width: 380px;
             border-radius: 15px;
@@ -26,6 +30,8 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             text-align: center;
         }
+
+        /* Tamaño del logo en caso de ser utilizado */
         .logo-img {
             width: 180px;
             margin-bottom: 20px;
@@ -35,14 +41,17 @@
 
 <body>
 
+<!-- Contenedor principal del formulario de registro -->
 <div class="register-card">
 
-
+    <!-- Título del formulario -->
     <h3 class="text-center mb-3">Crear Cuenta</h3>
 
+    <!-- Formulario para crear un usuario nuevo -->
     <form method="post" novalidate>
         {% csrf_token %}
 
+        <!-- Campo de nombre de usuario con validación -->
         <div class="mb-3 text-start">
             {{ form.username.label_tag }}
             {{ form.username }}
@@ -51,19 +60,23 @@
             {% endif %}
         </div>
 
+        <!-- Campo de contraseña -->
         <div class="mb-3 text-start">
             {{ form.password1.label_tag }}
             {{ form.password1 }}
         </div>
 
+        <!-- Campo para confirmar la contraseña -->
         <div class="mb-3 text-start">
             {{ form.password2.label_tag }}
             {{ form.password2 }}
         </div>
 
+        <!-- Botón para crear la cuenta -->
         <button class="btn btn-success w-100">Registrarse</button>
     </form>
 
+    <!-- Enlace para ir a iniciar sesión si ya se tiene cuenta -->
     <div class="text-center mt-3">
         <a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión</a>
     </div>
@@ -72,3 +85,4 @@
 
 </body>
 </html>
+

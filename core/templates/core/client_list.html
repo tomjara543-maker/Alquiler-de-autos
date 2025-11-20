@@ -1,11 +1,18 @@
 {% extends 'core/base.html' %}
+
 {% block content %}
 <div class="container mt-4">
+
+    <!-- Título principal de la sección -->
     <h2 class="mb-3">Clientes</h2>
 
+    <!-- Botón para crear un nuevo cliente -->
     <a href="{% url 'client-add' %}" class="btn btn-primary mb-3">Agregar Cliente</a>
 
+    <!-- Tabla que muestra todos los clientes registrados -->
     <table class="table table-striped">
+
+        <!-- Encabezado de la tabla -->
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -16,24 +23,35 @@
             </tr>
         </thead>
 
+        <!-- Cuerpo de la tabla -->
         <tbody>
+
+            <!-- Recorre la lista de clientes -->
             {% for client in object_list %}
             <tr>
+                <!-- Campos del cliente -->
                 <td>{{ client.nombre }}</td>
                 <td>{{ client.documento }}</td>
                 <td>{{ client.telefono }}</td>
                 <td>{{ client.email }}</td>
+
+                <!-- Botones de acción para editar/eliminar -->
                 <td>
                     <a href="{% url 'client-edit' client.pk %}" class="btn btn-sm btn-warning">Editar</a>
                     <a href="{% url 'client-delete' client.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
                 </td>
             </tr>
+
             {% empty %}
+
+            <!-- Si no existen clientes, muestra este mensaje -->
             <tr>
                 <td colspan="5" class="text-center">No hay clientes registrados.</td>
             </tr>
+
             {% endfor %}
         </tbody>
     </table>
+
 </div>
 {% endblock %}

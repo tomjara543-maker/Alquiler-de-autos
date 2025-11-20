@@ -1,12 +1,19 @@
 {% extends 'core/base.html' %}
+
 {% block title %}Alquileres{% endblock %}
 
 {% block content %}
+
+<!-- Título principal de la vista de alquileres -->
 <h2>Alquileres</h2>
 
+<!-- Botón para registrar un nuevo alquiler -->
 <a href="{% url 'rental-add' %}" class="btn btn-primary mb-3">Registrar Alquiler</a>
 
+<!-- Tabla que muestra todos los alquileres registrados -->
 <table class="table table-bordered">
+
+    <!-- Encabezados de la tabla -->
     <tr>
         <th>ID</th>
         <th>Cliente</th>
@@ -17,8 +24,11 @@
         <th>Acciones</th>
     </tr>
 
+    <!-- Ciclo para mostrar cada alquiler -->
     {% for r in rentals %}
     <tr>
+
+        <!-- Información principal del alquiler -->
         <td>{{ r.id }}</td>
         <td>{{ r.cliente.nombre }}</td>
         <td>{{ r.vehiculo.marca }} {{ r.vehiculo.modelo }}</td>
@@ -26,7 +36,10 @@
         <td>{{ r.fecha_fin }}</td>
         <td>${{ r.total }}</td>
 
+        <!-- Acciones y estado del alquiler -->
         <td>
+
+            <!-- Estado con estilos según el valor -->
             {% if r.estado == "activo" %}
                 <span class="btn btn-warning btn-sm">Activo</span>
             {% elif r.estado == "finalizado" %}
@@ -35,9 +48,13 @@
                 <span class="btn btn-danger btn-sm">Cancelado</span>
             {% endif %}
 
+            <!-- Botón para editar el alquiler -->
             <a class="btn btn-info btn-sm" href="{% url 'rental-edit' r.pk %}">Editar</a>
+
+            <!-- Botón para eliminar el alquiler -->
             <a class="btn btn-danger btn-sm" href="{% url 'rental-delete' r.pk %}">Eliminar</a>
         </td>
+
     </tr>
     {% endfor %}
 </table>

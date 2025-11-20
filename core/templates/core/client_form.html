@@ -1,6 +1,9 @@
 {% extends 'core/base.html' %}
+
 {% block content %}
 <div class="container mt-4">
+
+    <!-- Título dinámico: cambia según si estás editando o agregando un cliente -->
     <h2 class="mb-3">
         {% if object %}
             Editar Cliente
@@ -9,12 +12,19 @@
         {% endif %}
     </h2>
 
+    <!-- Formulario para crear o editar un cliente -->
     <form method="post">
         {% csrf_token %}
+
+        <!-- Renderiza automáticamente todos los campos del formulario -->
         {{ form.as_p }}
 
+        <!-- Botón principal -->
         <button class="btn btn-success" type="submit">Guardar</button>
+
+        <!-- Botón para volver a la lista sin guardar -->
         <a href="{% url 'client-list' %}" class="btn btn-secondary">Cancelar</a>
     </form>
+
 </div>
 {% endblock %}

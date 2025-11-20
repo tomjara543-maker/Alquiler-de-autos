@@ -6,9 +6,11 @@
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
 
+    <!-- Se carga Bootstrap para estilos del formulario -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        /* Fondo de pantalla usando una imagen estática */
         body {
             background-image: url("{% static 'img\img.jpeg' %}");
             height: 100vh;
@@ -17,6 +19,8 @@
             align-items: center;
             font-family: 'Poppins', sans-serif;
         }
+
+        /* Tarjeta del formulario de login */
         .login-card {
             width: 380px;
             border-radius: 15px;
@@ -27,16 +31,22 @@
             animation: fadeIn 0.8s ease;
             text-align: center;
         }
+
+        /* Animación de entrada */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to   { opacity: 1; transform: translateY(0); }
         }
+
+        /* Título del formulario */
         .login-title {
             font-weight: bold;
             margin-bottom: 20px;
             font-size: 1.8rem;
             color: #4e73df;
         }
+
+        /* Tamaño del logo si se usa */
         .logo-img {
             width: 180px;
             margin-bottom: 20px;
@@ -47,31 +57,35 @@
 <body>
 {% load static %}
 
-<img src="{% static 'img/mi_logo.png' %}"
-     alt="Logo"
-     style="width:24px; height:24px; object-fit:contain;">
-
+<!-- Texto pequeño de identificación o marca -->
 <span class="ms-2">RentGO</span>
 
+<!-- Contenedor visual del formulario de inicio de sesión -->
 <div class="login-card">
 
+    <!-- Título del formulario -->
     <h2 class="login-title">Iniciar Sesión</h2>
 
+    <!-- Formulario de login con método POST para enviar credenciales -->
     <form method="POST">
         {% csrf_token %}
 
+        <!-- Campo de nombre de usuario -->
         <div class="mb-3 text-start">
             <label class="form-label">Usuario</label>
             {{ form.username }}
         </div>
 
+        <!-- Campo de contraseña -->
         <div class="mb-3 text-start">
             <label class="form-label">Contraseña</label>
             {{ form.password }}
         </div>
 
+        <!-- Botón para enviar el formulario -->
         <button class="btn btn-primary w-100">Entrar</button>
 
+        <!-- Enlace para ir al registro si no se tiene cuenta -->
         <div class="text-center mt-3">
             <a href="{% url 'register' %}" class="text-decoration-none">
                 Crear cuenta nueva

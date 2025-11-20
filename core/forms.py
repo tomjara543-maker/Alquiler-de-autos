@@ -4,9 +4,7 @@ from django.contrib.auth.models import User
 from .models import Client, Vehicle, Rental
 
 
-# ==========================================================
-#  FORMULARIO DE REGISTRO (UserCreationForm con Bootstrap)
-# ==========================================================
+# Formulario de registro
 class RegisterForm(UserCreationForm):
 
     class Meta:
@@ -16,7 +14,8 @@ class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        for field_name, field in self.fields.items():
+        # Estilos Bootstrap
+        for field in self.fields.values():
             field.widget.attrs.update({
                 "class": "form-control",
                 "placeholder": field.label,
@@ -24,14 +23,14 @@ class RegisterForm(UserCreationForm):
             })
 
 
-# ==========================================================
-#  LOGIN FORM PERSONALIZADO (AuthenticationForm con Bootstrap)
-# ==========================================================
+# Formulario de inicio de sesión
 class CustomLoginForm(AuthenticationForm):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        for field_name, field in self.fields.items():
+        # Estilos Bootstrap
+        for field in self.fields.values():
             field.widget.attrs.update({
                 "class": "form-control",
                 "placeholder": field.label,
@@ -39,10 +38,9 @@ class CustomLoginForm(AuthenticationForm):
             })
 
 
-# ==========================================================
-#  CLIENTE
-# ==========================================================
+# Formulario de cliente
 class ClientForm(forms.ModelForm):
+
     class Meta:
         model = Client
         fields = "__all__"
@@ -50,14 +48,14 @@ class ClientForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        # Estilos Bootstrap
         for field in self.fields.values():
             field.widget.attrs.update({"class": "form-control"})
 
 
-# ==========================================================
-#  VEHÍCULO
-# ==========================================================
+# Formulario de vehículo
 class VehicleForm(forms.ModelForm):
+
     class Meta:
         model = Vehicle
         fields = "__all__"
@@ -65,14 +63,14 @@ class VehicleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        # Estilos Bootstrap
         for field in self.fields.values():
             field.widget.attrs.update({"class": "form-control"})
 
 
-# ==========================================================
-#  ALQUILER – VERSIÓN ORIGINAL QUE TE FUNCIONABA BIEN
-# ==========================================================
+# Formulario de alquiler
 class RentalForm(forms.ModelForm):
+
     class Meta:
         model = Rental
         fields = "__all__"
@@ -87,10 +85,10 @@ class RentalForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # VERSIÓN ORIGINAL → No se filtra nada
+        # Muestra todos los vehículos
         self.fields["vehiculo"].queryset = Vehicle.objects.all()
 
-        # Bootstrap en los demás campos
+        # Estilos en los demás campos
         for field_name, field in self.fields.items():
             if not field.widget.attrs.get("class"):
                 if isinstance(field.widget, forms.Select):
