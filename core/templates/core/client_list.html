@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Clientes</h2>
+
+    <a href="{% url 'client-add' %}" class="btn btn-primary mb-3">Agregar Cliente</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for client in object_list %}
+            <tr>
+                <td>{{ client.nombre }}</td>
+                <td>{{ client.documento }}</td>
+                <td>{{ client.telefono }}</td>
+                <td>{{ client.email }}</td>
+                <td>
+                    <a href="{% url 'client-edit' client.pk %}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{% url 'client-delete' client.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No hay clientes registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">
+        {% if object %}
+            Editar Cliente
+        {% else %}
+            Agregar Cliente
+        {% endif %}
+    </h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class="btn btn-success" type="submit">Guardar</button>
+        <a href="{% url 'client-list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

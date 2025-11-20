@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% block title %}Vehículos{% endblock %}
+
+{% block content %}
+<h2>Vehículos</h2>
+
+<a href="{% url 'vehicle-add' %}" class="btn btn-primary mb-3">Agregar Vehículo</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for v in vehiculos %}
+    <tr>
+        <td>{{ v.id }}</td>
+        <td>{{ v.marca }}</td>
+        <td>{{ v.modelo }}</td>
+        <td>{{ v.get_estado_display }}</td>
+        <td>
+            <a class="btn btn-warning btn-sm" href="{% url 'vehicle-edit' v.pk %}">Editar</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'vehicle-delete' v.pk %}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+

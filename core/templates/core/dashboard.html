@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+
+{% block title %}RentGO{% endblock %}
+
+{% block content %}
+
+
+<h2 class="mb-4">Alquiler de Autos</h2>
+
+<div class="row">
+
+    <!-- Clientes -->
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center p-3">
+            <h5>Clientes</h5>
+            <h2>{{ total_clientes }}</h2>
+        </div>
+    </div>
+
+    <!-- Vehículos -->
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center p-3">
+            <h5>Vehículos</h5>
+            <h2>{{ total_vehiculos }}</h2>
+        </div>
+    </div>
+
+    <!-- Disponibles -->
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center p-3">
+            <h5>Disponibles</h5>
+            <h2 class="text-success">{{ disponibles }}</h2>
+        </div>
+    </div>
+
+    <!-- Alquilados -->
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center p-3">
+            <h5>Alquilados</h5>
+            <h2 class="text-danger">{{ alquilados }}</h2>
+        </div>
+    </div>
+
+</div>
+
+<hr class="my-4">
+
+<!-- Ingresos -->
+<div class="card shadow-sm p-3 mb-4">
+    <h4>Ingresos totales</h4>
+    <h3>${{ ingresos_totales }}</h3>
+</div>
+
+<!-- Más alquilados -->
+<div class="card shadow-sm p-3">
+    <h4>Vehículos más alquilados</h4>
+
+    <ul class="list-group">
+        {% for v in mas_alquilados %}
+            <li class="list-group-item d-flex justify-content-between">
+                {{ v.vehiculo__marca }} {{ v.vehiculo__modelo }}
+                <span class="badge bg-primary">{{ v.total }} alquileres</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay datos</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
